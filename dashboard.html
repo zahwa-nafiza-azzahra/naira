@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - NafasBaru</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-slate-50 font-poppins transition-colors duration-300" id="app">
+  <!-- HEADER -->
+  <header class="dashboard-header">
+    <h1>Progress Kamu 🚭</h1>
+    <button id="toggleDark" class="toggle-btn">🌙</button>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container mx-auto py-12 px-4 grid gap-8 md:grid-cols-2">
+    <div class="stat-card">
+      <h2 class="text-xl font-bold mb-2">Waktu Sejak Berhenti</h2>
+      <p id="timeElapsed" class="text-2xl font-extrabold text-cyan-600">0 Hari</p>
+    </div>
+
+    <div class="stat-card">
+      <h2 class="text-xl font-bold mb-2">Uang yang Dihemat</h2>
+      <p id="moneySaved" class="text-2xl font-extrabold text-green-600">Rp 0</p>
+      <canvas id="savingChart" class="mt-4"></canvas>
+    </div>
+
+    <div class="stat-card col-span-2">
+      <h2 class="text-xl font-bold mb-4">Pencapaian Kesehatan</h2>
+      <ul id="milestones" class="text-gray-700 space-y-2"></ul>
+    </div>
+
+    <div class="stat-card col-span-2">
+      <h2 class="text-xl font-bold mb-4">Tantangan Harian</h2>
+      <p id="dailyChallenge" class="text-lg font-semibold text-cyan-700"></p>
+    </div>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

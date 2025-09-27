@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tentukan Quit Date - NafasBaru</title>
+  <link rel="stylesheet" href="commit.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center min-h-screen font-poppins">
+  <div class="bg-white/80 backdrop-blur-lg shadow-xl rounded-2xl p-8 max-w-lg w-full text-center animate-fadeIn">
+    <h1 class="text-3xl font-bold text-cyan-700 mb-4">🚭 Nafas Baru</h1>
+    <p class="text-gray-700 mb-6">Tentukan <b>Quit Date</b> & mulai perjalanan sehatmu.</p>
+    
+    <label class="block mb-3 font-semibold text-left">Tanggal Quit:</label>
+    <input type="date" id="quitDate" class="input">
+
+    <label class="block mb-3 font-semibold text-left mt-4">Biaya Rokok per Hari (Rp):</label>
+    <input type="number" id="dailyCost" class="input" placeholder="Contoh: 30000">
+
+    <button id="saveBtn" class="btn w-full mt-6">Mulai Perjalanan 🚀</button>
+  </div>
+
+  <script>
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      const quitDate = document.getElementById("quitDate").value;
+      const dailyCost = document.getElementById("dailyCost").value;
+      if (!quitDate || !dailyCost) {
+        alert("Harap isi semua data!");
+        return;
+      }
+      localStorage.setItem("quitDate", quitDate);
+      localStorage.setItem("dailyCost", dailyCost);
+      window.location.href = "dashboard.html";
+    });
+  </script>
+</body>
+</html>

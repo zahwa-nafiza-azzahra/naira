@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tantangan Berhenti Merokok - HentiRokok</title>
+    <link rel="stylesheet" href="challenge.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body
+    class="bg-gradient-to-br from-blue-50 to-cyan-50 font-poppins min-h-screen"
+  >
+    <!-- Header dengan Motivasi Harian -->
+    <header class="challenge-header">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl font-bold text-white mb-4">
+          🚭 Tantangan Bebas Rokok
+        </h1>
+        <p class="text-xl text-blue-100 mb-6">
+          Mulai perjalanan sehatmu hari ini!
+        </p>
+
+        <!-- Motivational Quote -->
+        <div class="motivation-card">
+          <i class="fas fa-quote-left text-blue-300 text-2xl mb-2"></i>
+          <p id="daily-quote" class="text-lg italic text-white">
+            "Setiap hari tanpa rokok adalah kemenangan besar untuk hidupmu"
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Stats Dashboard -->
+    <section class="stats-section">
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="stat-card">
+            <i class="fas fa-fire text-orange-500 text-3xl mb-2"></i>
+            <h3 class="font-bold text-xl">Streak Saat Ini</h3>
+            <p id="current-streak" class="text-3xl font-bold text-orange-600">
+              0
+            </p>
+            <span class="text-sm text-gray-600">hari berturut</span>
+          </div>
+
+          <div class="stat-card">
+            <i class="fas fa-heart text-red-500 text-3xl mb-2"></i>
+            <h3 class="font-bold text-xl">Kesehatan</h3>
+            <p id="health-score" class="text-3xl font-bold text-red-600">0%</p>
+            <span class="text-sm text-gray-600">pemulihan</span>
+          </div>
+
+          <div class="stat-card">
+            <i class="fas fa-coins text-yellow-500 text-3xl mb-2"></i>
+            <h3 class="font-bold text-xl">Uang Terhemat</h3>
+            <p id="money-saved" class="text-3xl font-bold text-yellow-600">
+              Rp 0
+            </p>
+            <span class="text-sm text-gray-600">total</span>
+          </div>
+
+          <div class="stat-card">
+            <i class="fas fa-trophy text-purple-500 text-3xl mb-2"></i>
+            <h3 class="font-bold text-xl">Achievement</h3>
+            <p id="total-badges" class="text-3xl font-bold text-purple-600">
+              0
+            </p>
+            <span class="text-sm text-gray-600">lencana</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Challenge Cards -->
+    <main class="container mx-auto py-8 px-4">
+      <!-- Daily Check-in Section -->
+      <section class="daily-checkin mb-12">
+        <div class="bg-white rounded-2xl shadow-lg p-8 text-center">
+          <h2 class="text-2xl font-bold mb-4">📅 Check-in Harian</h2>
+          <p class="text-gray-600 mb-6">
+            Tandai hari ini sebagai hari bebas rokok!
+          </p>
+          <button id="checkin-btn" class="checkin-button">
+            <i class="fas fa-check-circle mr-2"></i>
+            Saya bebas rokok hari ini!
+          </button>
+          <div id="checkin-success" class="success-message hidden">
+            <div class="celebration">🎉</div>
+            <p>Selamat! Hari ini berhasil!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Challenge Options -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <!-- Challenge 7 Hari -->
+        <div class="challenge-card" data-challenge="7">
+          <div class="challenge-badge">Pemula</div>
+          <div class="challenge-icon">🌱</div>
+          <h2 class="font-bold text-2xl mb-3">7 Hari Bebas Rokok</h2>
+          <p class="text-gray-600 mb-4">
+            Langkah pertama menuju hidup sehat. Buktikan kamu bisa!
+          </p>
+
+          <!-- Rewards Preview -->
+          <div class="rewards-preview">
+            <h4 class="font-semibold text-sm mb-2">Reward yang didapat:</h4>
+            <div class="flex gap-2">
+              <span class="reward-badge">🥉 Pemula</span>
+              <span class="reward-badge">💚 Detox</span>
+            </div>
+          </div>
+
+          <div class="challenge-actions">
+            <button class="btn start-btn">
+              <i class="fas fa-play mr-2"></i>Mulai Challenge
+            </button>
+            <button class="btn-secondary share-btn hidden">
+              <i class="fas fa-share mr-2"></i>Bagikan
+            </button>
+          </div>
+
+          <div class="progress-section">
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <p class="progress-text">Belum dimulai</p>
+            <canvas class="progress-chart"></canvas>
+          </div>
+
+          <!-- Health Benefits -->
+          <div class="health-benefits hidden">
+            <h4 class="font-semibold mb-2">Manfaat Kesehatan:</h4>
+            <ul class="text-sm text-gray-600">
+              <li>✓ Penciuman membaik dalam 2 hari</li>
+              <li>✓ Sirkulasi darah meningkat</li>
+              <li>✓ Energi bertambah</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Challenge 30 Hari -->
+        <div class="challenge-card featured" data-challenge="30">
+          <div class="challenge-badge featured">Populer</div>
+          <div class="challenge-icon">🌟</div>
+          <h2 class="font-bold text-2xl mb-3">30 Hari Transformasi</h2>
+          <p class="text-gray-600 mb-4">
+            Bangun kebiasaan sehat dan rasakan perubahan nyata!
+          </p>
+
+          <div class="rewards-preview">
+            <h4 class="font-semibold text-sm mb-2">Reward yang didapat:</h4>
+            <div class="flex gap-2">
+              <span class="reward-badge">🥈 Champion</span>
+              <span class="reward-badge">💪 Strong</span>
+              <span class="reward-badge">💰 Saver</span>
+            </div>
+          </div>
+
+          <div class="challenge-actions">
+            <button class="btn start-btn">
+              <i class="fas fa-star mr-2"></i>Mulai Challenge
+            </button>
+            <button class="btn-secondary share-btn hidden">
+              <i class="fas fa-share mr-2"></i>Bagikan
+            </button>
+          </div>
+
+          <div class="progress-section">
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <p class="progress-text">Belum dimulai</p>
+            <canvas class="progress-chart"></canvas>
+          </div>
+
+          <div class="health-benefits hidden">
+            <h4 class="font-semibold mb-2">Manfaat Kesehatan:</h4>
+            <ul class="text-sm text-gray-600">
+              <li>✓ Paru-paru mulai pulih</li>
+              <li>✓ Risiko jantung turun 50%</li>
+              <li>✓ Kulit lebih cerah</li>
+              <li>✓ Stamina meningkat drastis</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Challenge 100 Hari -->
+        <div class="challenge-card" data-challenge="100">
+          <div class="challenge-badge expert">Expert</div>
+          <div class="challenge-icon">🏆</div>
+          <h2 class="font-bold text-2xl mb-3">100 Hari Legenda</h2>
+          <p class="text-gray-600 mb-4">
+            Tantangan ultimate! Jadilah legenda dalam keluargamu!
+          </p>
+
+          <div class="rewards-preview">
+            <h4 class="font-semibold text-sm mb-2">Reward yang didapat:</h4>
+            <div class="flex gap-2">
+              <span class="reward-badge">🥇 Legend</span>
+              <span class="reward-badge">👑 Master</span>
+              <span class="reward-badge">💎 Premium</span>
+            </div>
+          </div>
+
+          <div class="challenge-actions">
+            <button class="btn start-btn">
+              <i class="fas fa-crown mr-2"></i>Mulai Challenge
+            </button>
+            <button class="btn-secondary share-btn hidden">
+              <i class="fas fa-share mr-2"></i>Bagikan
+            </button>
+          </div>
+
+          <div class="progress-section">
+            <div class="progress">
+              <div class="progress-bar" style="width: 0%"></div>
+            </div>
+            <p class="progress-text">Belum dimulai</p>
+            <canvas class="progress-chart"></canvas>
+          </div>
+
+          <div class="health-benefits hidden">
+            <h4 class="font-semibold mb-2">Manfaat Kesehatan:</h4>
+            <ul class="text-sm text-gray-600">
+              <li>✓ Paru-paru hampir seperti baru</li>
+              <li>✓ Risiko kanker turun signifikan</li>
+              <li>✓ Hidup lebih lama</li>
+              <li>✓ Kualitas hidup maksimal</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement Gallery -->
+      <section class="achievement-gallery mb-12">
+        <h2 class="text-3xl font-bold text-center mb-8">
+          🏆 Galeri Pencapaian
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+          <div class="achievement-item locked" data-badge="starter">
+            <div class="badge-icon">🌱</div>
+            <span class="badge-name">Pemula</span>
+            <span class="badge-desc">7 hari pertama</span>
+          </div>
+          <div class="achievement-item locked" data-badge="week1">
+            <div class="badge-icon">⭐</div>
+            <span class="badge-name">Survivor</span>
+            <span class="badge-desc">Minggu pertama</span>
+          </div>
+          <div class="achievement-item locked" data-badge="month1">
+            <div class="badge-icon">💪</div>
+            <span class="badge-name">Strong</span>
+            <span class="badge-desc">30 hari</span>
+          </div>
+          <div class="achievement-item locked" data-badge="saver">
+            <div class="badge-icon">💰</div>
+            <span class="badge-name">Saver</span>
+            <span class="badge-desc">Hemat Rp 500K</span>
+          </div>
+          <div class="achievement-item locked" data-badge="legend">
+            <div class="badge-icon">🏆</div>
+            <span class="badge-name">Legend</span>
+            <span class="badge-desc">100 hari</span>
+          </div>
+          <div class="achievement-item locked" data-badge="master">
+            <div class="badge-icon">👑</div>
+            <span class="badge-name">Master</span>
+            <span class="badge-desc">1 tahun</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tips & Motivation -->
+      <section class="tips-section">
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+          <h2 class="text-2xl font-bold mb-6 text-center">
+            💡 Tips Sukses Hari Ini
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="tip-card">
+              <i class="fas fa-glass-water text-blue-500 text-3xl mb-3"></i>
+              <h3 class="font-semibold mb-2">Minum Air Putih</h3>
+              <p class="text-sm text-gray-600">
+                Minum air putih setiap kali ingin merokok. Bantu detoksifikasi
+                tubuh.
+              </p>
+            </div>
+            <div class="tip-card">
+              <i class="fas fa-dumbbell text-green-500 text-3xl mb-3"></i>
+              <h3 class="font-semibold mb-2">Olahraga Ringan</h3>
+              <p class="text-sm text-gray-600">
+                Lakukan push-up atau jalan kaki saat ingin merokok.
+              </p>
+            </div>
+            <div class="tip-card">
+              <i class="fas fa-meditation text-purple-500 text-3xl mb-3"></i>
+              <h3 class="font-semibold mb-2">Bernafas Dalam</h3>
+              <p class="text-sm text-gray-600">
+                Teknik pernapasan 4-7-8 untuk mengatasi keinginan merokok.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="challenge.js"></script>
+  </body>
+</html>
